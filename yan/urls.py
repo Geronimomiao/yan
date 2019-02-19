@@ -14,10 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path
+from django.urls import path, re_path
 
 import xadmin
 
+from users.views import UserProfileListView, UserLoginView, UserLoginOutView, UserCheckLoginView, UserRegisterView, UserUpdateView
+
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
+    re_path(r'^users/getlist', UserProfileListView.as_view()),
+    re_path(r'^users/login', UserLoginView.as_view()),
+    re_path(r'^users/logout', UserLoginOutView.as_view()),
+    re_path(r'^users/checklogin', UserCheckLoginView.as_view()),
+    re_path(r'^users/register', UserRegisterView.as_view()),
+    re_path(r'^users/update/(?P<update_filed>.*)/$', UserUpdateView.as_view()),
 ]

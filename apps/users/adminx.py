@@ -15,6 +15,7 @@ __author__ = 'wsm'
 import xadmin
 from xadmin import views
 
+from .models import UserProfile
 
 class BaseSetting(object):
     enable_themes = True
@@ -27,5 +28,10 @@ class GlobalSettings(object):
     menu_style = "accordion"
 
 
+class UserProfileAdmin(object):
+    pass
+
+
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
+xadmin.site.register(UserProfile, UserProfileAdmin)
