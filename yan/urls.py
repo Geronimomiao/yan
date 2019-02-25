@@ -14,18 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path, re_path
-from django.views.decorators.csrf import csrf_exempt
+from django.urls import path, re_path, include
 from rest_framework.documentation import include_docs_urls
 import xadmin
+from rest_framework.routers import DefaultRouter
 
 from users.views import UserProfileListView, UserLoginView, UserLoginOutView, UserCheckLoginView, UserRegisterView, UserUpdateView
-from source.views import SourceRecommendBookView, SourceRecommendVideoView, PlanTableView, PlanTableViewset
+from source.views import SourceRecommendBookView, SourceRecommendVideoView, PlanTableView, PlanTableViewset, UserRecordView, UserRecordViewset
+
+router = DefaultRouter()
+router.register(r'plans', PlanTableViewset, base_name="plans")
+router.register(r'records', UserRecordViewset, base_name="records")
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    re_path(r'docs/', include_docs_urls(title='一路考研',authentication_classes=[],
-                                    permission_classes=[])),
+    re_path(r'docs/', include_docs_urls(title='一路考研', authentication_classes=[], permission_classes=[])),
+    re_path(r'^', include(router.urls)),
 
     re_path(r'^users/getlist', UserProfileListView.as_view()),
     re_path(r'^users/login', UserLoginView.as_view()),
@@ -36,11 +40,8 @@ urlpatterns = [
 
     re_path(r'^source/book', SourceRecommendBookView.as_view()),
     re_path(r'^source/video', SourceRecommendVideoView.as_view()),
+    re_path(r'^source/aims_plan', PlanTableView.as_view()),
+    re_path(r'^source/aims_record', UserRecordView.as_view()),
 
-    # re_path(r'^source/plan', PlanTableView.as_view()),
-    re_path(r'^source/plan/', csrf_exempt(PlanTableViewset.as_view({
-                                                    "get":"list",
-                                                    "post":"create",
-                                                    "put":"update",
-                                                    "delete":"destroy"}))),
+    # re_path(r'^source/plan/(?P<pk>.*)/$', PlanTableViewset.as_view({"get":"list", "post":"create", "put":"update", "delete":"destroy"})),
 ]
