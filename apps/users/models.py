@@ -7,7 +7,7 @@ class UserProfile(models.Model):
     nick_name = models.CharField(max_length=20, verbose_name='昵称', null=True, blank=True)
     gender = models.CharField(choices=(('male', '男'), ('female', '女')), default='female', max_length=6)
     email = models.CharField(max_length=30, verbose_name='邮箱', null=True, blank=True)
-    phone = models.CharField(max_length=20, verbose_name='电话', null=True, blank=True)
+    phone = models.CharField(max_length=20, verbose_name='电话', null=True, blank=True, unique=True)
     password = models.CharField(max_length=40, verbose_name='密码', null=True, blank=True)
     student_card_url_front = models.CharField(max_length=100, verbose_name='学生证正面', null=True, blank=True)
     student_card_url_back = models.CharField(max_length=100, verbose_name='学生证反面', null=True, blank=True)

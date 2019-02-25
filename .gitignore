@@ -6,3 +6,4 @@ apps/users/__pycache__/
 apps/users/migrations/__pycache__/
 templates/
 yan/__pycache__/
+extra_apps
