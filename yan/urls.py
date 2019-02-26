@@ -20,11 +20,12 @@ import xadmin
 from rest_framework.routers import DefaultRouter
 
 from users.views import UserProfileListView, UserLoginView, UserLoginOutView, UserCheckLoginView, UserRegisterView, UserUpdateView
-from source.views import SourceRecommendBookView, SourceRecommendVideoView, PlanTableView, PlanTableViewset, UserRecordView, UserRecordViewset
+from source.views import SourceRecommendBookView, SourceRecommendVideoView, PlanTableView, PlanTableViewset, UserRecordView, UserRecordViewset, UserExperienceView, UserExperienceViewset
 
 router = DefaultRouter()
 router.register(r'plans', PlanTableViewset, base_name="plans")
 router.register(r'records', UserRecordViewset, base_name="records")
+router.register(r'experiences', UserExperienceViewset, base_name="experiences")
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
@@ -42,6 +43,7 @@ urlpatterns = [
     re_path(r'^source/video', SourceRecommendVideoView.as_view()),
     re_path(r'^source/aims_plan', PlanTableView.as_view()),
     re_path(r'^source/aims_record', UserRecordView.as_view()),
+    re_path(r'^source/aims_experience', UserExperienceView.as_view()),
 
     # re_path(r'^source/plan/(?P<pk>.*)/$', PlanTableViewset.as_view({"get":"list", "post":"create", "put":"update", "delete":"destroy"})),
 ]

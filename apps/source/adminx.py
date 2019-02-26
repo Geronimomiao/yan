@@ -15,7 +15,7 @@ __author__ = 'wsm'
 import xadmin
 from xadmin import views
 
-from .models import RecommendBook, RecommendVideo, PlanTable, UserRecord
+from .models import RecommendBook, RecommendVideo, PlanTable, UserRecord, UserExperience
 
 class RecommendBookAdmin(object):
     pass
@@ -32,8 +32,14 @@ class PlanTableAdmin(object):
 class UserRecordAdmin(object):
     pass
 
+
+class UserExperienceAdmin(object):
+    pass
+
+
 xadmin.site.register(RecommendBook, RecommendBookAdmin)
 xadmin.site.register(RecommendVideo, RecommendVideoAdmin)
 xadmin.site.register(PlanTable, PlanTableAdmin)
 xadmin.site.register(UserRecord, UserRecordAdmin)
+xadmin.site.register(UserExperience, UserExperienceAdmin)
 

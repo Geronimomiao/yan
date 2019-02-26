@@ -13,7 +13,7 @@
 __author__ = 'wsm'
 
 from rest_framework import serializers
-from .models import PlanTable, UserRecord
+from .models import PlanTable, UserRecord, UserExperience
 
 class PlanTableSerializers(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +26,8 @@ class UserRecordSerializers(serializers.ModelSerializer):
         model = UserRecord
         fields = "__all__"
 
+
+class UserExperienceSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = UserExperience
+        fields = "__all__"
