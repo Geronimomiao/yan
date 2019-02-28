@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'users',
     'source',
+    'chat',
 ]
 
 MIDDLEWARE = [

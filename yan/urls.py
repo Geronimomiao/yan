@@ -21,11 +21,13 @@ from rest_framework.routers import DefaultRouter
 
 from users.views import UserProfileListView, UserLoginView, UserLoginOutView, UserCheckLoginView, UserRegisterView, UserUpdateView
 from source.views import SourceRecommendBookView, SourceRecommendVideoView, PlanTableView, PlanTableViewset, UserRecordView, UserRecordViewset, UserExperienceView, UserExperienceViewset
+from chat.views import UserChatRecordView, UserChatRecordViewset
 
 router = DefaultRouter()
 router.register(r'plans', PlanTableViewset, base_name="plans")
 router.register(r'records', UserRecordViewset, base_name="records")
 router.register(r'experiences', UserExperienceViewset, base_name="experiences")
+router.register(r'chats', UserChatRecordViewset, base_name="chats")
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
@@ -44,6 +46,8 @@ urlpatterns = [
     re_path(r'^source/aims_plan', PlanTableView.as_view()),
     re_path(r'^source/aims_record', UserRecordView.as_view()),
     re_path(r'^source/aims_experience', UserExperienceView.as_view()),
+
+    re_path(r'^source/chats', UserChatRecordView.as_view()),
 
     # re_path(r'^source/plan/(?P<pk>.*)/$', PlanTableViewset.as_view({"get":"list", "post":"create", "put":"update", "delete":"destroy"})),
 ]
